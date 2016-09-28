@@ -1,9 +1,9 @@
 WeatherHype
 =
-WeatherHype is a simple weather app built using 
+WeatherHype is a simple weather app built using the
 [openweathermap.org](http://openweathermap.org) weather API.
 
-WeatherHype is a universal app for devices running iOS iOS 9.3 or higher.
+WeatherHype is a universal app for devices running iOS 9.3 or higher.
 
 
 Build, test and run
@@ -19,15 +19,17 @@ Just open the `WeatherHype.xcworkspace`in Xcode and hit
 Future Improvemens
 =
 
-There are many things I'd improve given more time, including:
+There are many things I'd like to improve given more time, including:
 
-* Ability to search different cities 
+* Ability to search for weather in different cities 
 * Ability to manage a list of cities recently accessed.
-* Use high resolution and high quality images for different weather states.
-* Use Co
+* High resolution and high quality images for different weather states (I used low res images avaiable on openweathermap as placeholders.)
+* High quality app icons (I used a simple png, upscaled to all correct sizes using [makeappicon.com](https://makeappicon.com))
+* Localisation: translated strings and localised formats.
+* Allow the user to switch between metric and imperial units.
+* Automatically refresh the weather data when the app becomes active.
+* Improvements to the visual design.
 
-Technical Details
-=
 
 	
         
