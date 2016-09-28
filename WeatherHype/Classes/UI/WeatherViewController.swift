@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class WeatherViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
@@ -28,30 +29,32 @@ class WeatherViewController: UIViewController {
     }
 
     //MARK: internal
+    
     func updateView() {
     
-        if let value =  model.maxTemperature {
-            
+        if let weatherStatus = model.weatherStatus {
+            self.view.backgroundColor = weatherStatus.color()
+        }
+        if let value = model.maxTemperature {
             maxTemperatureLabel.text = formatTemp(value)
         }
-        if let value =  model.minTemperature {
+        if let value = model.minTemperature {
             minTemperatureLabel.text = formatTemp(value)
         }
-        if let value =  model.humidity {
+        if let value = model.humidity {
             humidityLabel.text = formatHumidity(value)
         }
-        if let value =  model.pressure {
+        if let value = model.pressure {
             pressureLabel.text = formatPressure(value)
         }
-        if let value =  model.wind {
+        if let value = model.wind {
             windLabel.text = formatWind(value)
         }
-        if let value =  model.weatherDescription {
+        if let value = model.weatherDescription {
             descriptionLabel.text = String(describing:value)
         }
-        if let value =  model.icon {
+        if let value = model.icon {
             self.downloadImage(name:value)
-          
         }
     }
     

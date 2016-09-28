@@ -6,7 +6,42 @@
 //  Copyright © 2016 Carlo Pascoli. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+enum WeatherStatus: String {
+    
+    case clear = "Clear",
+        clouds = "Clouds",
+        rain = "Rain",
+        thunderstorm = "Thunderstorm",
+        snow = "Snow",
+        mist = "Mist",
+        unknown = "Unknown"
+    
+    init(rawValue: String) {
+        switch rawValue {
+            case "Clear": self = .clear; break
+            case "Clouds": self = .clouds; break
+            case "Rain": self = .rain; break
+            case "Thunderstorm": self = .thunderstorm; break
+            case "Snow": self = .snow; break
+            case "Mist": self = .mist; break
+            default: self = .unknown; break
+        }
+    }
+    
+    func color() -> UIColor {
+        switch self {
+            case .clear: return UIColor(hex:0xA1CEF6)
+            case .clouds: return UIColor(hex:0x81C7D5)
+            case .rain: return UIColor(hex:0x789497)
+            case .thunderstorm: return UIColor(hex:0x617A7D)
+            case .snow: return UIColor(hex:0xE1E6E7)
+            case .mist: return UIColor(hex:0xE1E1E1)
+            default: return UIColor(hex:0xB6A156)
+        }
+    }
+}
 
 class WeatherData: NSObject {
 
@@ -18,7 +53,8 @@ class WeatherData: NSObject {
     var pressure:NSNumber?
     var wind:NSNumber?
     var icon:String?
-    var weatherMain:String?
+    var weatherStatus:WeatherStatus?
     var weatherDescription:String?
     
 }
+

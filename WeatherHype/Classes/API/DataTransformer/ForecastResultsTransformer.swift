@@ -68,11 +68,10 @@ class ForecastResultsTransformer: NSObject {
     }
     
     func decorate(item:WeatherData, json:JSON) {
-    
         let main = json["main"].stringValue
         let description = json["description"].stringValue
         let icon = json["icon"].stringValue
-        item.weatherMain = main
+        item.weatherStatus = WeatherStatus(rawValue:main)
         item.weatherDescription = description
         item.icon = icon
     }

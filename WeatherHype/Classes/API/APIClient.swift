@@ -33,8 +33,9 @@ class APIClient: NSObject {
      * api.openweathermap.org/data/2.5/find?q={query}&type=like
      */
     func find(query:String, onCompletion:@escaping SearchResultsResponse) {
-        
-        let path = "find?q="+query+"&type=like"
+       
+        let queryEscaped = query.addingPercentEncoding(withAllowedCharacters:.urlQueryAllowed)
+        let path = "find?q="+queryEscaped!+"&type=like"
         let request = fetchRequest(for:path)
         
         executeJSON(request: request, handler: { json, error -> Void in

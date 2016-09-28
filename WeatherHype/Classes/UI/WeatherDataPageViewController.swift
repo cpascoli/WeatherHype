@@ -43,7 +43,7 @@ class WeatherDataPageViewController: UIPageViewController {
         self.dataSource = self
         self.delegate = self
         
-        // notify the delegate to set the initla day
+        // notify the delegate to update the day
         if let viewController = self.weatherViewControllerArray.first {
             self.pageChangedDelegate?.didChange(to:viewController.model)
         }

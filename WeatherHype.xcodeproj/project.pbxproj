@@ -53,13 +53,6 @@
 			remoteGlobalIDString = 23D174401D9AE845001E0022;
 			remoteInfo = WeatherHype;
 		};
-		23D174611D9AE845001E0022 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 23D174391D9AE845001E0022 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 23D174401D9AE845001E0022;
-			remoteInfo = WeatherHype;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -89,7 +82,6 @@
 		23D174551D9AE845001E0022 /* WeatherHypeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherHypeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		23D174591D9AE845001E0022 /* IntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationTests.swift; sourceTree = "<group>"; };
 		23D1745B1D9AE845001E0022 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		23D174601D9AE845001E0022 /* WeatherHypeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherHypeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		72144BE9114BB0128612CC34 /* Pods-WeatherHypeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherHypeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherHypeTests/Pods-WeatherHypeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		757A40FF5321B12183132B37 /* Pods-WeatherHype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherHype.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherHype/Pods-WeatherHype.debug.xcconfig"; sourceTree = "<group>"; };
 		77FD357D2D453153BD6BFD30 /* Pods_WeatherHypeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherHypeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,13 +102,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				31AC103A5675CEFD00ADAFDC /* Pods_WeatherHypeTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		23D1745D1D9AE845001E0022 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +201,6 @@
 			children = (
 				23D174411D9AE845001E0022 /* WeatherHype.app */,
 				23D174551D9AE845001E0022 /* WeatherHypeTests.xctest */,
-				23D174601D9AE845001E0022 /* WeatherHypeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -308,24 +292,6 @@
 			productReference = 23D174551D9AE845001E0022 /* WeatherHypeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		23D1745F1D9AE845001E0022 /* WeatherHypeUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 23D1746F1D9AE845001E0022 /* Build configuration list for PBXNativeTarget "WeatherHypeUITests" */;
-			buildPhases = (
-				23D1745C1D9AE845001E0022 /* Sources */,
-				23D1745D1D9AE845001E0022 /* Frameworks */,
-				23D1745E1D9AE845001E0022 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				23D174621D9AE845001E0022 /* PBXTargetDependency */,
-			);
-			name = WeatherHypeUITests;
-			productName = WeatherHypeUITests;
-			productReference = 23D174601D9AE845001E0022 /* WeatherHypeUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -342,12 +308,6 @@
 						ProvisioningStyle = Automatic;
 					};
 					23D174541D9AE845001E0022 = {
-						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 7DZ8FR94Q3;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 23D174401D9AE845001E0022;
-					};
-					23D1745F1D9AE845001E0022 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 7DZ8FR94Q3;
 						ProvisioningStyle = Automatic;
@@ -370,7 +330,6 @@
 			targets = (
 				23D174401D9AE845001E0022 /* WeatherHype */,
 				23D174541D9AE845001E0022 /* WeatherHypeTests */,
-				23D1745F1D9AE845001E0022 /* WeatherHypeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -394,13 +353,6 @@
 			files = (
 				239894F41D9AEC8100FD9A37 /* Config.plist in Resources */,
 				23B26D911D9C202B00835594 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		23D1745E1D9AE845001E0022 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,13 +493,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		23D1745C1D9AE845001E0022 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -555,11 +500,6 @@
 			isa = PBXTargetDependency;
 			target = 23D174401D9AE845001E0022 /* WeatherHype */;
 			targetProxy = 23D174561D9AE845001E0022 /* PBXContainerItemProxy */;
-		};
-		23D174621D9AE845001E0022 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 23D174401D9AE845001E0022 /* WeatherHype */;
-			targetProxy = 23D174611D9AE845001E0022 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -736,34 +676,6 @@
 			};
 			name = Release;
 		};
-		23D174701D9AE845001E0022 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 7DZ8FR94Q3;
-				INFOPLIST_FILE = WeatherHypeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.carlopascoli.WeatherHypeUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = WeatherHype;
-			};
-			name = Debug;
-		};
-		23D174711D9AE845001E0022 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 7DZ8FR94Q3;
-				INFOPLIST_FILE = WeatherHypeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.carlopascoli.WeatherHypeUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = WeatherHype;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -790,15 +702,6 @@
 			buildConfigurations = (
 				23D1746D1D9AE845001E0022 /* Debug */,
 				23D1746E1D9AE845001E0022 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		23D1746F1D9AE845001E0022 /* Build configuration list for PBXNativeTarget "WeatherHypeUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				23D174701D9AE845001E0022 /* Debug */,
-				23D174711D9AE845001E0022 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

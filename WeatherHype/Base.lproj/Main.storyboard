@@ -54,7 +54,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.82890266180038452" green="0.90933114290237427" blue="0.95536690950393677" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.60205544509999998" green="0.65189607510000003" blue="0.72617912799999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <accessibility key="accessibilityConfiguration" identifier="CityViewController"/>
                         <constraints>
                             <constraint firstItem="HuG-b4-wrU" firstAttribute="width" secondItem="IvE-go-Hrb" secondAttribute="width" id="EVF-tT-g5u"/>
@@ -86,13 +86,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="01d.png" translatesAutoresizingMaskIntoConstraints="NO" id="fQt-m4-rUE" userLabel="StatusImage">
-                                <color key="backgroundColor" red="0.82890266180038452" green="0.90933114290237427" blue="0.95536690950393677" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="180" id="5pw-00-WVY"/>
-                                    <constraint firstAttribute="height" constant="180" id="YnJ-YX-CWY"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunny Intervals" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="h8a-YH-GMr" userLabel="DescriptionLabel">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="EGr-G0-tJs"/>
@@ -102,7 +95,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21°" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z81-9t-tP4">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="31°" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z81-9t-tP4">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="O0Q-Lz-9Du"/>
                                     <constraint firstAttribute="width" constant="100" id="rrS-uE-dnj"/>
@@ -111,7 +104,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21°" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZyP-V1-hkL">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20°" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZyP-V1-hkL">
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="33"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -143,15 +136,6 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="82%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xd7-aD-vnp">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="1cH-Ss-0X7"/>
-                                    <constraint firstAttribute="width" constant="85" id="Eah-8n-XqY"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wind" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NiS-8p-BUm">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="85" id="6Zo-r1-gqB"/>
@@ -170,6 +154,22 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="82%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xd7-aD-vnp">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="1cH-Ss-0X7"/>
+                                    <constraint firstAttribute="width" constant="85" id="Eah-8n-XqY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fQt-m4-rUE" userLabel="StatusImage">
+                                <color key="backgroundColor" red="0.82890266180038452" green="0.90933114290237427" blue="0.95536690950393677" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="5pw-00-WVY"/>
+                                    <constraint firstAttribute="height" constant="180" id="YnJ-YX-CWY"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.41712522506713867" green="0.75080138444900513" blue="0.90949612855911255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -212,7 +212,4 @@
             <point key="canvasLocation" x="2190" y="0.0"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="01d.png" width="50" height="50"/>
-    </resources>
 </document>
