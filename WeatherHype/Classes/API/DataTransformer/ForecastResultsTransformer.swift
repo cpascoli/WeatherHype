@@ -15,16 +15,16 @@ class ForecastResultsTransformer: NSObject {
         
         let forecastsReults = ForecastResults()
         forecastsReults.city = parseCity(json: json["city"])
-        var data = [WeatherItem]()
+        var data = [WeatherData]()
         
         for item in json["list"].arrayValue {
-            let weatherItem = parseWeatherItem(json:item)
+            let WeatherData = parseWeatherData(json:item)
             let weatherArray = item["weather"].arrayValue
             if weatherArray.count > 0 {
                 let firstWeather = weatherArray[0]
-                decorate(item: weatherItem, json:firstWeather)
+                decorate(item: WeatherData, json:firstWeather)
             }
-            data.append(weatherItem)
+            data.append(WeatherData)
         }
         forecastsReults.data = data
         return forecastsReults
@@ -39,24 +39,30 @@ class ForecastResultsTransformer: NSObject {
         return city
     }
     
-    func  parseWeatherItem(json:JSON) -> WeatherItem {
+    func  parseWeatherData(json:JSON) -> WeatherData {
         
         let timestamp = json["dt"].numberValue
         let main = json["main"]
         let temperature = main["temp"].numberValue
+        let minTemp = main["temp_min"].numberValue
+        let maxTemp = main["temp_max"].numberValue
+        let humidity = main["humidity"].numberValue        
         let pressure = main["pressure"].numberValue
-        let humidity = main["humidity"].numberValue
+        let wind = json["wind"]["speed"].numberValue
         
-        let item = WeatherItem()
+        let item = WeatherData()
         item.humidity = humidity
         item.temperature = temperature
+        item.minTemperature = minTemp;
+        item.maxTemperature = maxTemp
         item.humidity = humidity
         item.pressure = pressure
+        item.wind = wind
         item.time = Date(timeIntervalSinceReferenceDate: TimeInterval(timestamp))
         return item
     }
     
-    func decorate(item:WeatherItem, json:JSON) {
+    func decorate(item:WeatherData, json:JSON) {
     
         let main = json["main"].stringValue
         let description = json["description"].stringValue

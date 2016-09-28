@@ -11,7 +11,7 @@ import XCTest
 
 class WeatherHypeTests: XCTestCase {
     
-    var apiClient:APIClient?
+    var apiClient:APIClient!
     
     override func setUp() {
         super.setUp()
@@ -24,30 +24,17 @@ class WeatherHypeTests: XCTestCase {
         super.tearDown()
     }
     
-    func testAppConfig() {
-        
-        let configDict = apiClient!.configDict()
-        XCTAssertNotNil(configDict)
-        
-        let appId = configDict?.object(forKey: "AppID") as! String
-        let baseURL = configDict?.object(forKey: "BaseURL") as! String
-        let units = configDict?.object(forKey: "Units") as! String
-        XCTAssertNotNil(appId)
-        XCTAssertNotNil(baseURL)
-        XCTAssertNotNil(units)
-        XCTAssertEqual(units, "metric")
-        
-    }
-    
+
     func testSearchRequest() {
+        
         let theExpectation = expectation(description: "weather request returns data")
-        apiClient?.search(query: "Lond", onCompletion: {searchResults, error -> Void in
+        apiClient.search(query: "Lond", onCompletion: {searchResults, error -> Void in
             print(searchResults)
             theExpectation.fulfill()
         })
         
         // 2s timeout
-        waitForExpectations(timeout: 2000, handler: { error in
+        waitForExpectations(timeout: 5000, handler: { error in
             XCTAssertNil(error, "Oh, weather request timeout")
         })
     }
@@ -55,7 +42,7 @@ class WeatherHypeTests: XCTestCase {
     func testForecastForCityRequest() {
         
         let theExpectation = expectation(description: "weather request returns data")
-        apiClient?.forecast(byCityId: "2172797", onCompletion: {forecastResults, error -> Void in
+        apiClient.forecast(byCityId: "2172797", onCompletion: {forecastResults, error -> Void in
             print(forecastResults)
             
             XCTAssertNotNil(forecastResults?.city, "forecast resuts should have city")
@@ -66,7 +53,7 @@ class WeatherHypeTests: XCTestCase {
         })
         
         // 2s timeout
-        waitForExpectations(timeout: 2000, handler: { error in
+        waitForExpectations(timeout: 5000, handler: { error in
             XCTAssertNil(error, "Oh, weather request timeout")
         })
     }

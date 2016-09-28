@@ -17,9 +17,14 @@ class AppAssember: NSObject {
         apiClient = APIClient()
     }
     
-    func cityViewController() -> UIViewController {
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CityViewController") as! CityViewController
-        //viewController.apiClient = apiClient
+    func cityViewController(for city:City) -> CityViewController {
+        
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "City") as! CityViewController
+        viewController.city = city
+        viewController.apiClient = apiClient
+        
+
+        
         return viewController
     }
     

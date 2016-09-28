@@ -8,28 +8,56 @@
 
 import UIKit
 
-class CityViewController: UIViewController {
+class CityViewController:UIViewController {
 
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    
+    var city:City!
+    var apiClient:APIClient!
+    var dataPageViewController:UIPageViewController!
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.fetchData()
+        self.cityLabel.text = self.city.name
+        
+        self.fetchData()
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func fetchData() {
+    
+        apiClient.forecast(byCityId: city.cityId, onCompletion: {result, error in
+        
+            if let result = result, let data = result.data  {
+                self.setupPagedViewController(with:data)
+            }
+        })
     }
-    */
-
+    
+    func setupPagedViewController(with data:[WeatherData]) {
+    
+        let viewController = WeatherDataPageViewController()
+        viewController.model = data
+        
+        let offset = CGFloat(100.0)
+        viewController.view.center = CGPoint(x:self.view.center.x, y:self.view.center.y + offset)
+        let h = self.view.bounds.size.height - offset
+        let w = self.view.bounds.size.width
+        viewController.view.bounds = CGRect(origin: CGPoint(x:0, y:0), size: CGSize(width:w, height:h))
+        
+        // add child view
+        self.addChildViewController(viewController)
+        self.view.addSubview(viewController.view)
+        viewController.didMove(toParentViewController: self)
+        
+    }
+    
 }

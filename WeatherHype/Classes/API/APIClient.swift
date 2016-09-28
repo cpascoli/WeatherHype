@@ -52,7 +52,9 @@ class APIClient: NSObject {
         execute(request: request, handler: { json, error -> Void in
             let transformer = ForecastResultsTransformer()
             let searchResults = transformer.parse(json: json)
-            onCompletion(searchResults, error)
+            DispatchQueue.main.async(execute:{
+               onCompletion(searchResults, error)
+            })
         })
         
     }

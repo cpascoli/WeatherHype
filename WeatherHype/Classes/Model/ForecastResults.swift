@@ -11,7 +11,7 @@ import UIKit
 class ForecastResults: NSObject {
 
   var city:City?
-  var data:[WeatherItem]?
+  var data:[WeatherData]?
     
     
 }
