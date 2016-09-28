@@ -1,53 +1,35 @@
-[1]: http://google.com/ "Google"
-[2]: http://search.yahoo.com/  "Yahoo Search"
-[3]: http://search.msn.com/    "MSN Search"
+WeatherHype
+=
+WeatherHype is a simple weather app built using 
+[openweathermap.org](http://openweathermap.org) weather API.
+
+WeatherHype is a universal app for devices running iOS iOS 9.3 or higher.
 
 
-How to build test and run the project
+Build, test and run
+=
+WeatherHype is implemented is Swift 3 and therefore requires Xcode 8.0 to run.
+
+Just open the `WeatherHype.xcworkspace`in Xcode and hit 
+
+* `CMD+U`  to build & run the tests
+* `CMD+R`  to build & run the app
+
+
+Future Improvemens
 =
 
+There are many things I'd improve given more time, including:
 
+* Ability to search different cities 
+* Ability to manage a list of cities recently accessed.
+* Use high resolution and high quality images for different weather states.
+* Use Co
 
-Future Improvements
+Technical Details
 =
 
 	
-
-how to read
-=
-this is a paraghraph this is a paraghraphthis is a paraghraph this is a paraghraphthis is a paraghraph this is a paraghraphthis is a paraghraph this is a paraghraphthis is a paraghraph this is a paraghraphthis is a paraghraph this is [Google][1] a paraghraphthis is a paraghraph this is a paraghraph
-
-
-title
-----
- 
-> test ardad this is a paraghraph this is a paraghraphthis is a paraghraph this is a paraghraphthis is a paraghraph this is a paraghraph
-this is a paraghraph this is a paraghraph
-
-
-aaa this is a paraghraph this is a paraghraphthis is a paraghraph this is a paraghraphthis is a paraghraph this is a paraghraphthis is a paraghraph this is a paraghraph
-
-* asada
-* asda
-* asda
-
-1. adasd
-2. asdasd
-
-[example link](http://example.com/)
-
-
-
-	DispatchQueue.main.async(execute:{
-		self?.stopAnimating()
-		self?.statusLabel.text = message
-		let delayTime = DispatchTime.now() + .seconds(2)
-		DispatchQueue.main.asyncAfter(deadline: delayTime) {
-		    self?.statusLabel.text = nil
-		    self?.bumpInProgress = false
-		}
-	})
-            
         
 
 

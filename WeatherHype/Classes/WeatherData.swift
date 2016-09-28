@@ -32,8 +32,8 @@ enum WeatherStatus: String {
     
     func color() -> UIColor {
         switch self {
-            case .clear: return UIColor(hex:0xA1CEF6)
-            case .clouds: return UIColor(hex:0x81C7D5)
+            case .clear: return UIColor(hex:0x62B3FC)
+            case .clouds: return UIColor(hex:0xBDC7D1)
             case .rain: return UIColor(hex:0x789497)
             case .thunderstorm: return UIColor(hex:0x617A7D)
             case .snow: return UIColor(hex:0xE1E6E7)

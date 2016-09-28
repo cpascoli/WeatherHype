@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 protocol WeatherDataChangedDelegate : class {
     func didChange(to weatherData:WeatherData)
 }
 
-class CityViewController:UIViewController, WeatherDataChangedDelegate {
+class CityViewController:UIViewController, WeatherDataChangedDelegate, NVActivityIndicatorViewable {
 
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -34,6 +35,7 @@ class CityViewController:UIViewController, WeatherDataChangedDelegate {
     func didChange(to weatherData:WeatherData) {
         if let date = weatherData.date {
             self.dateLabel.text = self.text(for:date)
+            self.view.backgroundColor = weatherData.weatherStatus!.color()
         } else {
             self.dateLabel.text = nil
         }
@@ -47,9 +49,12 @@ class CityViewController:UIViewController, WeatherDataChangedDelegate {
             return
         }
         
+        self.startAnimating(message:"loading ...", type:.ballScaleRipple, color:UIColor.white, padding:CGFloat(5.0))
+        
         apiClient.forecast(byCityId: city.cityId, onCompletion: {[weak self] result, error in
             if let result = result, let data = result.data  {
                 self?.setupPagedViewController(with:data)
+                self?.stopAnimating()
             }
         })
     }

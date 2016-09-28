@@ -1,10 +1,8 @@
 PODS:
-  - AMPopTip (1.0.3)
   - NVActivityIndicatorView (3.0)
   - SwiftyJSON (3.1.0)
 
 DEPENDENCIES:
-  - AMPopTip
   - NVActivityIndicatorView (from `https://github.com/ninjaprox/NVActivityIndicatorView.git`)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
@@ -23,10 +21,9 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  AMPopTip: 42ab801c5d4519093908d14134c8c9d7ffc435b4
   NVActivityIndicatorView: 19c0c7549ffe4f830f65d00b2f0d9a144e4c5105
   SwiftyJSON: 29b9f2a64f118c07e691667c2ba1efe536acfe0b
 
-PODFILE CHECKSUM: e6f182918e84219da5a3ead08de9c0deb05de48e
+PODFILE CHECKSUM: 477053ef862809c21e6e775c2d4869f808367e4e
 
 COCOAPODS: 1.0.1

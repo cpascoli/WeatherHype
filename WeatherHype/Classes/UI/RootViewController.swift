@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
-class RootViewController:UIViewController {
+class RootViewController:UIViewController, NVActivityIndicatorViewable {
 
     typealias LocationResponse = (City, NSError?) -> Void
     var apiClient: APIClient!
@@ -21,10 +22,13 @@ class RootViewController:UIViewController {
     
     func setupUI() {
         
+        self.startAnimating(message:"loading ...", type:.ballScaleRipple, color:UIColor.white, padding:CGFloat(5.0))
+        
         self.findCityToDisplay(onCompletion:{[weak self] city, error in
             let viewController = self?.cityViewController(for:city)
             DispatchQueue.main.async(execute:{
                 self?.display(viewController:viewController!)
+                self?.stopAnimating()
             })
         })
     }
@@ -61,7 +65,7 @@ class RootViewController:UIViewController {
         
         let viewController = UIStoryboard(name: "Main", bundle: Bundle(for:type(of:self))).instantiateViewController(withIdentifier: "City") as! CityViewController
         viewController.city = city
-        viewController.apiClient = APIClient()
+        viewController.apiClient = apiClient
         return viewController
     }
 }
