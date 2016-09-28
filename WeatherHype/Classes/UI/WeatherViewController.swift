@@ -19,40 +19,76 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var windLabel: UILabel!
     
     var model:WeatherData!
+    var apiClient:APIClient!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.imageView.image = nil;
         updateView()
     }
 
+    //MARK: internal
     func updateView() {
     
         if let value =  model.maxTemperature {
-            maxTemperatureLabel.text = String(describing:value)
+            
+            maxTemperatureLabel.text = formatTemp(value)
         }
         if let value =  model.minTemperature {
-            minTemperatureLabel.text = String(describing:value)
+            minTemperatureLabel.text = formatTemp(value)
         }
         if let value =  model.humidity {
-            humidityLabel.text = String(describing:value)
+            humidityLabel.text = formatHumidity(value)
         }
         if let value =  model.pressure {
-            pressureLabel.text = String(describing:value)
+            pressureLabel.text = formatPressure(value)
         }
         if let value =  model.wind {
-            windLabel.text = String(describing:value)
+            windLabel.text = formatWind(value)
         }
         if let value =  model.weatherDescription {
             descriptionLabel.text = String(describing:value)
         }
-
+        if let value =  model.icon {
+            self.downloadImage(name:value)
+          
+        }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func downloadImage(name:String) {
+        self.apiClient.downloadImage(name: name, onCompletion: { image, error in
+            self.imageView.image = image
+        })
     }
-
+    
+    //MARK: Formatting
+    func formatTemp(_ value:NSNumber) -> String {
+        let rounded = Int(round(Double(value)))
+        let formetted = "\(rounded)°"
+        return formetted
+    }
+    
+    func formatHumidity(_ value:NSNumber) -> String {
+        let rounded = Int(round(Double(value)))
+        let formetted = "\(rounded)%"
+        return formetted
+    }
+    
+    func formatWind(_ value:NSNumber) -> String {
+        let rounded = Int(round(toKmH(Double(value))))
+        let formetted = "\(rounded) km/hr"
+        return formetted
+    }
+    
+    func formatPressure(_ value:NSNumber) -> String {
+        let rounded = Int(round(Double(value)))
+        let formetted = "\(rounded) hPa"
+        return formetted
+    }
+    
+    func toKmH(_ value:Double) -> Double {
+        return value * 60.0 / 1000.0
+    }
 }
 
 

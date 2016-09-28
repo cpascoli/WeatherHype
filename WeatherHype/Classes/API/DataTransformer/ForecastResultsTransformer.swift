@@ -17,14 +17,19 @@ class ForecastResultsTransformer: NSObject {
         forecastsReults.city = parseCity(json: json["city"])
         var data = [WeatherData]()
         
-        for item in json["list"].arrayValue {
-            let WeatherData = parseWeatherData(json:item)
-            let weatherArray = item["weather"].arrayValue
-            if weatherArray.count > 0 {
-                let firstWeather = weatherArray[0]
-                decorate(item: WeatherData, json:firstWeather)
-            }
-            data.append(WeatherData)
+        for (index, item) in json["list"].arrayValue.enumerated() {
+            
+            // The service provides data items every 3h.
+            // but we are going to use only one per day.
+            if index % 8 == 0 {
+                let weatherData = parseWeatherData(json:item)
+                let weatherArray = item["weather"].arrayValue
+                if weatherArray.count > 0 {
+                    let firstWeather = weatherArray[0]
+                    decorate(item:weatherData, json:firstWeather)
+                }
+                data.append(weatherData)
+            }            
         }
         forecastsReults.data = data
         return forecastsReults
@@ -39,7 +44,7 @@ class ForecastResultsTransformer: NSObject {
         return city
     }
     
-    func  parseWeatherData(json:JSON) -> WeatherData {
+    func parseWeatherData(json:JSON) -> WeatherData {
         
         let timestamp = json["dt"].numberValue
         let main = json["main"]
@@ -58,7 +63,7 @@ class ForecastResultsTransformer: NSObject {
         item.humidity = humidity
         item.pressure = pressure
         item.wind = wind
-        item.time = Date(timeIntervalSinceReferenceDate: TimeInterval(timestamp))
+        item.date = Date(timeIntervalSince1970:timestamp.doubleValue)
         return item
     }
     
@@ -66,9 +71,10 @@ class ForecastResultsTransformer: NSObject {
     
         let main = json["main"].stringValue
         let description = json["description"].stringValue
-        //let icon = firstWeather["icon"]
+        let icon = json["icon"].stringValue
         item.weatherMain = main
         item.weatherDescription = description
+        item.icon = icon
     }
     
 }

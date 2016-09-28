@@ -6,7 +6,11 @@
 	<string>7c0226a9f74a2de632063d4982db56f1</string>
 	<key>BaseURL</key>
 	<string>http://api.openweathermap.org/data/2.5</string>
+	<key>ImageURL</key>
+	<string>http://openweathermap.org</string>
 	<key>Units</key>
 	<string>metric</string>
+	<key>DefaultCity</key>
+	<string>Roma</string>
 </dict>
 </plist>

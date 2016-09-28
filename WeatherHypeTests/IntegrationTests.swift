@@ -12,72 +12,81 @@ import XCTest
 class WeatherHypeTests: XCTestCase {
     
     var apiClient:APIClient!
+    var city:City?
     
     override func setUp() {
         super.setUp()
         self.apiClient = APIClient()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        self.apiClient = nil
         super.tearDown()
     }
     
 
     func testSearchRequest() {
+       
+        // This test uses the "find" API to search London and ensure the top result is indeed London
         
-        let theExpectation = expectation(description: "weather request returns data")
-        apiClient.search(query: "Lond", onCompletion: {searchResults, error -> Void in
-            print(searchResults)
+        let theExpectation = expectation(description: "search for London should return data")
+        apiClient.find(query: "London", onCompletion: {searchResults, error -> Void in
+           
+            XCTAssertNotNil(searchResults, "search results not nil")
+            XCTAssertTrue(searchResults!.results.count > 0, "search for London have results")
+            
+            let city = searchResults?.results[0]
+            XCTAssertEqual(city!.name, "London", "Found London")
+
             theExpectation.fulfill()
         })
         
-        // 2s timeout
+        // set timeout
         waitForExpectations(timeout: 5000, handler: { error in
-            XCTAssertNil(error, "Oh, weather request timeout")
+            XCTAssertNil(error, "Oh, request timeout")
         })
     }
     
+ 
     func testForecastForCityRequest() {
+    
+        // Here we search for a city (London) before fetching its weather forecasts.
+        // Hardcoding a city id in a test is not a good idea as they seem to change (!)
         
         let theExpectation = expectation(description: "weather request returns data")
-        apiClient.forecast(byCityId: "2172797", onCompletion: {forecastResults, error -> Void in
-            print(forecastResults)
-            
-            XCTAssertNotNil(forecastResults?.city, "forecast resuts should have city")
-            XCTAssertNotNil(forecastResults?.data, "forecast resuts should have data")
-            XCTAssertEqual(forecastResults?.data?.count, 40, "forecast resuts should have 40 data items")
-            
-            theExpectation.fulfill()
+
+        apiClient.find(query: "London", onCompletion: {searchResults, error -> Void in
+            let city = searchResults?.results[0]
+            self.apiClient.forecast(byCityId:city!.cityId, onCompletion: {forecastResults, error -> Void in
+                XCTAssertNotNil(forecastResults?.city, "forecast resuts include city")
+                XCTAssertEqual(forecastResults?.city?.name, "London", "resuts for the expected city")
+                XCTAssertNotNil(forecastResults?.data, "forecast resuts have data")
+                XCTAssertEqual(forecastResults?.data?.count, 5, "forecast resuts should have 5 data items")
+                theExpectation.fulfill()
+            })
         })
         
-        // 2s timeout
+        // set timeout
         waitForExpectations(timeout: 5000, handler: { error in
-            XCTAssertNil(error, "Oh, weather request timeout")
+            XCTAssertNil(error, "Oh, request timeout")
         })
     }
     
     
-//    func testWatherForCityRequest() {
-//        let theExpectation = expectation(description: "weather request returns data")
-//        apiClient?.weather(byCityId: "2172797", onCompletion: {json, error -> Void in
-//            print(json)
-//            theExpectation.fulfill()
-//        })
-//
-//        // 2s timeout
-//        waitForExpectations(timeout: 2000, handler: { error in
-//            XCTAssertNil(error, "Oh, weather request timeout")
-//        })
-//    }
-    
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testImageDownload() {
+        
+        // Downlod a thumbnail image
+        let theExpectation = expectation(description: "can download thumbnail images")
+        
+        self.apiClient.downloadImage(name: "01d", onCompletion: { image, error in
+             XCTAssertNotNil(image, "thumbnail image downloaded")
+             theExpectation.fulfill()
+        })
+        
+        // set timeout
+        waitForExpectations(timeout: 5000, handler: { error in
+            XCTAssertNil(error, "Oh, request timeout")
+        })
     }
-    
+
 }

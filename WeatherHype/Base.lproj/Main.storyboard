@@ -87,15 +87,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="01d.png" translatesAutoresizingMaskIntoConstraints="NO" id="fQt-m4-rUE" userLabel="StatusImage">
-                                <color key="backgroundColor" red="0.2379045984" green="0.68780717520000001" blue="0.9296875" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.82890266180038452" green="0.90933114290237427" blue="0.95536690950393677" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="5pw-00-WVY"/>
                                     <constraint firstAttribute="height" constant="180" id="YnJ-YX-CWY"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunny Intervals" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="h8a-YH-GMr" userLabel="DescriptionLabel">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunny Intervals" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="h8a-YH-GMr" userLabel="DescriptionLabel">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="EGr-G0-tJs"/>
+                                    <constraint firstAttribute="width" constant="120" id="EGr-G0-tJs"/>
                                     <constraint firstAttribute="height" constant="70" id="pr1-Zl-vzS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="26"/>

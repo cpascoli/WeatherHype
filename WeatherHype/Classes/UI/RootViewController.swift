@@ -11,31 +11,34 @@ import UIKit
 class RootViewController:UIViewController {
 
     typealias LocationResponse = (City, NSError?) -> Void
-    
-    let appAssember = AppAssember()
+    var apiClient: APIClient!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.apiClient = APIClient()
         setupUI()
     }
     
-    
-    func findCityToDisplay(onCompletion:LocationResponse) {
-    
-        let city = City(cityId: "2643743", name: "London", country: "GB")
-        onCompletion(city, nil)
-    }
-    
-    
     func setupUI() {
-    
-        findCityToDisplay(onCompletion:{[weak self] city, error in
-            
-            let viewController = self?.appAssember.cityViewController(for:city)
+        
+        self.findCityToDisplay(onCompletion:{[weak self] city, error in
+            let viewController = self?.cityViewController(for:city)
             DispatchQueue.main.async(execute:{
                 self?.display(viewController:viewController!)
             })
-            
+        })
+    }
+    
+    
+    func findCityToDisplay(onCompletion:@escaping LocationResponse) {
+        
+        let query = apiClient.config?.value(forKey: "DefaultCity") as! String
+        
+        self.apiClient.find(query: query, onCompletion: {results, error in
+            let city = results?.results.first
+            if let city = city {
+                onCompletion(city, nil)
+            }
         })
     }
     
@@ -53,4 +56,12 @@ class RootViewController:UIViewController {
         viewController.didMove(toParentViewController: self)
     }
 
+    
+    func cityViewController(for city:City) -> CityViewController {
+        
+        let viewController = UIStoryboard(name: "Main", bundle: Bundle(for:type(of:self))).instantiateViewController(withIdentifier: "City") as! CityViewController
+        viewController.city = city
+        viewController.apiClient = APIClient()
+        return viewController
+    }
 }

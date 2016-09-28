@@ -10,50 +10,78 @@ import XCTest
 
 class UnitTests: XCTestCase {
     
-    var appAssembler:AppAssember!
+    var apiClient:APIClient!
+    var rootViewController:RootViewController!
+    var cityViewController:CityViewController!
     
     override func setUp() {
         super.setUp()
-        self.appAssembler = AppAssember()
+        apiClient = APIClient()
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle(for:type(of:self)))
+        rootViewController = storyboard.instantiateInitialViewController() as! RootViewController!
+        cityViewController = storyboard.instantiateViewController(withIdentifier:"City") as! CityViewController
     }
     
     override func tearDown() {
+        self.apiClient = nil
+        self.rootViewController = nil
+        self.cityViewController = nil
         super.tearDown()
-        self.appAssembler = nil
     }
+    
     
     func testAppConfig() {
         
-        let configDict = appAssembler.apiClient.configDict()
+        let configDict = apiClient.configDict()
         XCTAssertNotNil(configDict)
         
         let appId = configDict?.object(forKey: "AppID") as! String
         let baseURL = configDict?.object(forKey: "BaseURL") as! String
         let units = configDict?.object(forKey: "Units") as! String
+        let defaultCity = configDict?.object(forKey: "DefaultCity") as! String
+        
         XCTAssertNotNil(appId)
         XCTAssertNotNil(baseURL)
         XCTAssertNotNil(units)
         XCTAssertEqual(units, "metric")
-        
+        XCTAssertNotNil(defaultCity)
+        XCTAssertEqual(units, "London")
     }
+    
+    
+    func testRootViewController() {
+        
+        // test that RootViewController can return a CityViewController
+        let city = City(cityId: "2643743", name: "London", country: "GB")
+        let cityViewController = rootViewController.cityViewController(for: city)
+        
+        XCTAssertNotNil(cityViewController.city!, "cityViewController should have a city")
+        XCTAssertEqual(cityViewController.city!.cityId, city.cityId, "cityViewController should have the right city")
+    }
+    
     
     func testCityViewController() {
         
-        let city = City(cityId: "2643743", name: "London", country: "GB")
-        let viewController = appAssembler.cityViewController(city: city)
+        // test date formatting for today and tomorrow's dates
+        let today = Date()
+        let todayString = cityViewController.text(for:today)
+        XCTAssertEqual(todayString, "Today", "Today is Today")
         
-        XCTAssertNotNil(viewController, "cityViewController should not be nil")
-        XCTAssertNotNil(viewController.wetherViewContoller, "cityViewController should have a wetherViewContoller")
-        XCTAssertNotNil(viewController.city, "cityViewController should have a city")
-        XCTAssertEqual(viewController.city.cityId, city.cityId, "cityViewController should have the right city")
-        
+        let tomorrow = Date(timeIntervalSinceNow: 24*60*60)
+        let tomorrowString = cityViewController.text(for:tomorrow)
+        XCTAssertEqual(tomorrowString, "Tomorrow", "Tomorrow is Tomorrow")
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+  
+    func testDateExtension() {
+    
+        let dateString = "28 Sep 2016"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        let date = dateFormatter.date(from:dateString)
+        
+        let dayOfWeek = date!.dayOfWeek()
+        XCTAssertEqual(dayOfWeek, "Wednesday", "Sept the 28th 2016 is Wednesdays")
     }
     
 }

@@ -10,17 +10,14 @@ import UIKit
 
 class WeatherDataPageViewController: UIPageViewController {
 
-    var model:[WeatherData]? {
-        didSet {
-            setupViewControllers(with:model!)
-        }
-    }
-
+    var apiClient:APIClient!
+    var model:[WeatherData]!
     var weatherViewControllerArray:[WeatherViewController]!
 
+    // delegate used to inform the CityViewContoller that a new day is being presented
+    weak var pageChangedDelegate:WeatherDataChangedDelegate?
+    
     override init(transitionStyle style: UIPageViewControllerTransitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation, options: [String : Any]?) {
-        
-        // Here i changed the transition style: UIPageViewControllerTransitionStyle.Scroll
         super.init(transitionStyle: UIPageViewControllerTransitionStyle.scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.horizontal, options: options)
     }
     
@@ -28,17 +25,27 @@ class WeatherDataPageViewController: UIPageViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-
     override func viewDidLoad() {
-        super.viewDidLoad()
-        dataSource = self
         
-        self.view.backgroundColor = UIColor.orange
-        if let firstViewController = weatherViewControllerArray.first {
-            setViewControllers([firstViewController],
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor.white
+        
+        setupViewControllers(with:self.model)
+        
+        if let firstController = self.weatherViewControllerArray.first {
+            setViewControllers([firstController],
                                direction: .forward,
                                animated: true,
                                completion: nil)
+            
+        }
+        
+        self.dataSource = self
+        self.delegate = self
+        
+        // notify the delegate to set the initla day
+        if let viewController = self.weatherViewControllerArray.first {
+            self.pageChangedDelegate?.didChange(to:viewController.model)
         }
     }
     
@@ -48,6 +55,7 @@ class WeatherDataPageViewController: UIPageViewController {
         for dataItem in data {
            let viewController = weatherViewController()
             viewController.model = dataItem
+            viewController.apiClient = apiClient
             viewContollers.append(viewController)
         }
         self.weatherViewControllerArray = viewContollers
@@ -85,31 +93,37 @@ extension WeatherDataPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
        
+        
         guard let viewControllerIndex = weatherViewControllerArray?.index(of: viewController as! WeatherViewController) else {
             return nil
         }
         let nextIndex = viewControllerIndex + 1
-        let viewControllersCount = viewControllers?.count
-        
-        guard nextIndex >= viewControllersCount! else {
+        guard nextIndex < weatherViewControllerArray.count else {
             return nil
         }
-        
         return weatherViewControllerArray[nextIndex]
     }
     
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return weatherViewControllerArray.count
     }
     
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-       
-        guard let firstViewController = viewControllers?.first,
-              let firstViewControllerIndex = weatherViewControllerArray.index(of: firstViewController as! WeatherViewController) else {
-                return 0
-        }
-        
-        return firstViewControllerIndex
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+        return 0
     }
     
+}
+
+extension WeatherDataPageViewController: UIPageViewControllerDelegate {
+    
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            didFinishAnimating finished: Bool,
+                            previousViewControllers: [UIViewController],
+                            transitionCompleted completed: Bool) {
+        
+        let viewController = pageViewController.viewControllers!.first! as! WeatherViewController
+        self.pageChangedDelegate?.didChange(to: viewController.model)
+    }
+
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2016 Carlo Pascoli. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class City: NSObject {
 
