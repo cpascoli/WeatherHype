@@ -64,7 +64,9 @@ class WeatherViewController: UIViewController {
         })
     }
     
-    //MARK: Formatting
+    
+    //MARK: Data formatting
+    
     func formatTemp(_ value:NSNumber) -> String {
         let rounded = Int(round(Double(value)))
         let formetted = "\(rounded)°"
@@ -89,11 +91,11 @@ class WeatherViewController: UIViewController {
         return formetted
     }
     
-    func toKmH(_ value:Double) -> Double {
-        return value * 60.0 / 1000.0
+    func toKmH(_ ms:Double) -> Double {
+        let kmh = ms * 3600.0 / 1000.0
+        return kmh
     }
 }
-
 
 
 

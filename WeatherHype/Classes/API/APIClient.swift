@@ -66,7 +66,7 @@ class APIClient: NSObject {
     }
     
     /*
-     * get the weather image from
+     * Get the weather thumbnail from api.openweathermap.org
     */
     func downloadImage(name:String, onCompletion:@escaping ImageResponse) {
     

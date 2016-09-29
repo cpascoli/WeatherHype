@@ -100,7 +100,7 @@ class UnitTests: XCTestCase {
         XCTAssertEqual(weatherViewController.maxTemperatureLabel.text, "31°", "correct max temp")
         XCTAssertEqual(weatherViewController.minTemperatureLabel.text, "20°", "correct min temp")
         XCTAssertEqual(weatherViewController.descriptionLabel.text, "few clouds")
-        XCTAssertEqual(weatherViewController.windLabel.text, "0 km/hr", "correct wind speed")
+        XCTAssertEqual(weatherViewController.windLabel.text, "15 km/hr", "correct wind speed")
         XCTAssertEqual(weatherViewController.humidityLabel.text, "80%", "correct humidity")
         XCTAssertEqual(weatherViewController.pressureLabel.text, "1025 hPa", "correct pressure")
     }
