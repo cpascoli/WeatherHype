@@ -72,7 +72,7 @@ class ForecastResultsTransformer: NSObject {
         let description = json["description"].stringValue
         let icon = json["icon"].stringValue
         item.weatherStatus = WeatherStatus(rawValue:main)
-        item.weatherDescription = description
+        item.weatherDescription = description.localized
         item.icon = icon
     }
     

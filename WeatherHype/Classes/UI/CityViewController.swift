@@ -15,8 +15,10 @@ protocol WeatherDataChangedDelegate : class {
 
 class CityViewController:UIViewController, WeatherDataChangedDelegate, NVActivityIndicatorViewable {
 
+    
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var contentView: UIView!
     
     var city:City?
     var apiClient:APIClient!
@@ -30,6 +32,7 @@ class CityViewController:UIViewController, WeatherDataChangedDelegate, NVActivit
         self.fetchData()
     }
    
+    
 //MARK: WeatherDataChangedDelegate
     
     func didChange(to weatherData:WeatherData) {
@@ -49,7 +52,7 @@ class CityViewController:UIViewController, WeatherDataChangedDelegate, NVActivit
             return
         }
         
-        self.startAnimating(message:"loading ...", type:.ballScaleRipple, color:UIColor.white, padding:CGFloat(5.0))
+        self.startAnimating(message:"loading ...".localized, type:.ballScaleRipple, color:UIColor.white, padding:CGFloat(5.0))
         
         apiClient.forecast(byCityId: city.cityId, onCompletion: {[weak self] result, error in
             if let result = result, let data = result.data  {
@@ -66,14 +69,17 @@ class CityViewController:UIViewController, WeatherDataChangedDelegate, NVActivit
         viewController.apiClient = apiClient
         viewController.pageChangedDelegate = self
         
-        let offset = CGFloat(120.0)
-        viewController.view.center = CGPoint(x:self.view.center.x, y:self.view.center.y + offset)
-        let h = self.view.bounds.size.height - offset
-        let w = self.view.bounds.size.width
-        viewController.view.bounds = CGRect(origin: CGPoint(x:0, y:0), size: CGSize(width:w, height:h))
+//        let offset = CGFloat(120.0)
+//        viewController.view.center = CGPoint(x:self.view.center.x, y:self.view.center.y + offset)
+//        let h = self.view.bounds.size.height - offset
+//        let w = self.view.bounds.size.width
+        viewController.view.frame = CGRect(x: 0, y: 0, width:
+            contentView.bounds.width, height: contentView.bounds.height)
+        
+         
         
         self.addChildViewController(viewController)
-        self.view.addSubview(viewController.view)
+        self.contentView.addSubview(viewController.view)
         viewController.didMove(toParentViewController: self)
     }
     

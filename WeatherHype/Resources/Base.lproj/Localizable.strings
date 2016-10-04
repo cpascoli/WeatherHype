@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  WeatherHype
+
+  Created by Carlo Pascoli on 04/10/2016.
+  Copyright © 2016 Carlo Pascoli. All rights reserved.
+*/
+"loading"="Loading ...";
+"clear sky"="Clear Sky";
+"scattered clouds"="Scattered Clouds";
+"light rain"="Light Rain";

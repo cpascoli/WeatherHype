@@ -1,5 +1,5 @@
 //
-//  WeatherHypeTests.swift
+//  IntegrationTests.swift
 //  WeatherHypeTests
 //
 //  Created by Carlo Pascoli on 27/09/2016.
@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import WeatherHype
+
 
 class WeatherHypeTests: XCTestCase {
     
