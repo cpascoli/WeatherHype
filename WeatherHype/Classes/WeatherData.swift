@@ -10,23 +10,23 @@ import UIKit
 
 enum WeatherStatus: String {
     
-    case clear = "Clear",
-        clouds = "Clouds",
-        rain = "Rain",
-        thunderstorm = "Thunderstorm",
-        snow = "Snow",
-        mist = "Mist",
-        unknown = "Unknown"
-    
+    case clear,
+         clouds,
+         rain,
+         thunderstorm,
+         snow,
+         mist,
+         unknown
+
     init(rawValue: String) {
         switch rawValue {
-            case "Clear": self = .clear; break
-            case "Clouds": self = .clouds; break
+            case "Clear": self = .clear
+            case "Clouds": self = .clouds
             case "Rain": self = .rain; break
-            case "Thunderstorm": self = .thunderstorm; break
-            case "Snow": self = .snow; break
-            case "Mist": self = .mist; break
-            default: self = .unknown; break
+            case "Thunderstorm": self = .thunderstorm
+            case "Snow": self = .snow
+            case "Mist": self = .mist
+            default: self = .unknown
         }
     }
     
@@ -40,6 +40,10 @@ enum WeatherStatus: String {
             case .mist: return UIColor(hex:0xE1E1E1)
             default: return UIColor(hex:0xB6A156)
         }
+    }
+    
+    func name() -> String {
+        return self.rawValue.localized
     }
 }
 
