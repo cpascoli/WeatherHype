@@ -38,8 +38,12 @@ class WeatherViewController: UIViewController {
         if let value = model.maxTemperature {
             maxTemperatureLabel.text = formatTemp(value)
         }
-        if let value = model.minTemperature {
-            minTemperatureLabel.text = formatTemp(value)
+        if let minalue = model.minTemperature, let maxvalue = model.maxTemperature {
+            if minalue !=  maxvalue {
+                minTemperatureLabel.text = formatTemp(minalue)
+            } else {
+                 minTemperatureLabel.text = nil
+            }
         }
         if let value = model.humidity {
             humidityLabel.text = formatHumidity(value)
