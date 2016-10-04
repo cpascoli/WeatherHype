@@ -28,7 +28,6 @@ class WeatherDataPageViewController: UIPageViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.white
         
         setupViewControllers(with:self.model)
         
@@ -45,7 +44,7 @@ class WeatherDataPageViewController: UIPageViewController {
         
         // notify the delegate to update the day
         if let viewController = self.weatherViewControllerArray.first {
-            self.pageChangedDelegate?.didChange(to:viewController.model)
+            updateView(viewController)
         }
     }
     
@@ -113,6 +112,11 @@ extension WeatherDataPageViewController: UIPageViewControllerDataSource {
         return 0
     }
     
+    func updateView(_ viewController:WeatherViewController) {
+        
+        self.pageChangedDelegate?.didChange(to: viewController.model)
+        self.view.backgroundColor = viewController.model.weatherStatus?.color()
+    }
 }
 
 extension WeatherDataPageViewController: UIPageViewControllerDelegate {
@@ -122,8 +126,9 @@ extension WeatherDataPageViewController: UIPageViewControllerDelegate {
                             previousViewControllers: [UIViewController],
                             transitionCompleted completed: Bool) {
         
-        let viewController = pageViewController.viewControllers!.first! as! WeatherViewController
-        self.pageChangedDelegate?.didChange(to: viewController.model)
+       let viewController = pageViewController.viewControllers!.first! as! WeatherViewController
+       updateView(viewController)
+
     }
 
 }
