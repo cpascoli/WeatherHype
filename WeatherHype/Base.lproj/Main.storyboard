@@ -23,7 +23,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="639" y="143"/>
+            <point key="canvasLocation" x="-79" y="107"/>
         </scene>
         <!--City View Controller-->
         <scene sceneID="fbJ-m0-mMS">
@@ -198,6 +198,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="79b-NJ-FmS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2189.0625" y="0.0"/>
+        </scene>
+        <!--City Form View Controller-->
+        <scene sceneID="KTB-48-b7i">
+            <objects>
+                <viewController storyboardIdentifier="CityForm" id="jqk-bb-PAz" customClass="CityFormViewController" customModule="WeatherHype" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fVs-mF-Zt4"/>
+                        <viewControllerLayoutGuide type="bottom" id="eQ3-DC-mIO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4VA-SN-UPl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="city" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="210-hw-7dk">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="COa-eu-ScN"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="jqk-bb-PAz" id="0vA-ma-l0t"/>
+                                </connections>
+                            </textField>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHA-VJ-Irn">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="9ZN-ya-aPc"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Enter a City" id="JR4-9Z-3o6">
+                                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="sja-EE-Kb7">
+                                            <connections>
+                                                <action selector="dismiss:" destination="jqk-bb-PAz" id="Egb-S8-Ur4"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.41712522506713867" green="0.75080138444900513" blue="0.90949612855911255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="aHA-VJ-Irn" firstAttribute="top" secondItem="fVs-mF-Zt4" secondAttribute="bottom" constant="-20" id="1oE-dB-XwW"/>
+                            <constraint firstItem="210-hw-7dk" firstAttribute="centerX" secondItem="4VA-SN-UPl" secondAttribute="centerX" id="C1V-p9-qlp"/>
+                            <constraint firstItem="aHA-VJ-Irn" firstAttribute="width" secondItem="4VA-SN-UPl" secondAttribute="width" id="Xam-Ma-5RO"/>
+                            <constraint firstItem="210-hw-7dk" firstAttribute="leading" secondItem="4VA-SN-UPl" secondAttribute="leadingMargin" constant="50" id="ZiW-Nn-ipf"/>
+                            <constraint firstItem="aHA-VJ-Irn" firstAttribute="centerX" secondItem="4VA-SN-UPl" secondAttribute="centerX" id="hEn-iw-ySV"/>
+                            <constraint firstItem="210-hw-7dk" firstAttribute="centerY" secondItem="4VA-SN-UPl" secondAttribute="centerY" id="mQb-qS-0I3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="210-hw-7dk" secondAttribute="trailing" constant="50" id="sqx-6J-isI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cityTextField" destination="210-hw-7dk" id="ZZ4-L5-mC1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p6e-wV-msf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2879" y="161"/>
         </scene>
     </scenes>
 </document>

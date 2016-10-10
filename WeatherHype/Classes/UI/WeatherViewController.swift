@@ -64,7 +64,7 @@ class WeatherViewController: UIViewController {
     
     func downloadImage(name:String) {
         self.apiClient.downloadImage(name: name, onCompletion: { image, error in
-            self.imageView.image = image
+           self.imageView.image = image
         })
     }
     

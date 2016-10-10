@@ -11,7 +11,12 @@ import UIKit
 class WeatherDataPageViewController: UIPageViewController {
 
     var apiClient:APIClient!
-    var model:[WeatherData]!
+    var model:[WeatherData]! {
+        didSet {
+            setupUI()
+        }
+    }
+    
     var weatherViewControllerArray:[WeatherViewController]!
 
     // delegate used to inform the CityViewContoller that a new day is being presented
@@ -29,6 +34,12 @@ class WeatherDataPageViewController: UIPageViewController {
         
         super.viewDidLoad()
         
+        setupUI()
+ 
+    }
+    
+    func setupUI() {
+    
         setupViewControllers(with:self.model)
         
         if let firstController = self.weatherViewControllerArray.first {
@@ -54,7 +65,7 @@ class WeatherDataPageViewController: UIPageViewController {
         for dataItem in data {
            let viewController = weatherViewController()
             viewController.model = dataItem
-            viewController.apiClient = apiClient
+            viewController.apiClient = self.apiClient
             viewContollers.append(viewController)
         }
         self.weatherViewControllerArray = viewContollers

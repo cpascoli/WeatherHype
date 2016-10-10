@@ -9,10 +9,12 @@
 import UIKit
 import NVActivityIndicatorView
 
-class RootViewController:UIViewController, NVActivityIndicatorViewable {
 
-    typealias LocationResponse = (City, NSError?) -> Void
+class RootViewController:UIViewController {
+
+    
     var apiClient: APIClient!
+    var city:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,29 +24,20 @@ class RootViewController:UIViewController, NVActivityIndicatorViewable {
     
     func setupUI() {
         
-        self.startAnimating(message:"loading ...", type:.ballScaleRipple, color:UIColor.white, padding:CGFloat(5.0))
-        
-        self.findCityToDisplay(onCompletion:{[weak self] city, error in
-            let viewController = self?.cityViewController(for:city)
-            DispatchQueue.main.async(execute:{
-                self?.display(viewController:viewController!)
-                self?.stopAnimating()
-            })
-        })
+        let viewController = self.cityViewController(for:nil)
+        self.display(viewController:viewController)
+
     }
     
-    
-    func findCityToDisplay(onCompletion:@escaping LocationResponse) {
-        
-        let query = apiClient.config?.value(forKey: "DefaultCity") as! String
-        
-        self.apiClient.find(query: query, onCompletion: {results, error in
-            let city = results?.results.first
-            if let city = city {
-                onCompletion(city, nil)
-            }
-        })
+    //MARK: CityHandler
+    func handleCity(city:String) -> Void {
+        self.city = city
+       
     }
+    
+
+    
+
     
     func display(viewController:UIViewController) {
     
@@ -61,9 +54,10 @@ class RootViewController:UIViewController, NVActivityIndicatorViewable {
     }
 
     
-    func cityViewController(for city:City) -> CityViewController {
+    func cityViewController(for city:City?) -> CityViewController {
         
         let viewController = UIStoryboard(name: "Main", bundle: Bundle(for:type(of:self))).instantiateViewController(withIdentifier: "City") as! CityViewController
+        
         viewController.city = city
         viewController.apiClient = apiClient
         return viewController
